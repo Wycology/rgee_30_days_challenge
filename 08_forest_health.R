@@ -123,7 +123,7 @@ ee_print(annual_bands_clean)
 # ---------------------------------------------------------------------------
 # 8. Reduce annual NDVI bands over the ROI
 # ---------------------------------------------------------------------------
-stats <- annual_bands$reduceRegions(
+stats <- annual_bands_clean$reduceRegions(
   collection = roi,
   reducer   = ee$Reducer$median(),
   scale     = 100   # NDVI at 30 m, aggregation fine at 100 m
@@ -194,3 +194,4 @@ Map$addLayer(
 # ---------------------------------------------------------------------------
 # End of Script
 # ---------------------------------------------------------------------------
+
