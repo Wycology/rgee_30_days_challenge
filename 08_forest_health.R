@@ -49,7 +49,7 @@ Map$addLayer(eeObject = roi$style(color = 'yellow',
                                   width = 4))
 
 # ---------------------------------------------------------------------------
-# 4. Define date range for Landsat data
+# 4. Define a date range for Landsat data
 # ---------------------------------------------------------------------------
 start_date <- "2000-01-01"
 end_date   <- "2025-01-01"
@@ -84,12 +84,12 @@ l7 <- ee$ImageCollection("LANDSAT/LE07/C02/T1_L2")$
   })
 
 # ---------------------------------------------------------------------------
-# 6. Create list of years
+# 6. Create a list of years
 # ---------------------------------------------------------------------------
 years <- ee$List$sequence(2000, 2024)
 
 # ---------------------------------------------------------------------------
-# 7. Build annual mean NDVI image for each year
+# 7. Build an annual mean NDVI image for each year
 # ---------------------------------------------------------------------------
 annual_ndvi <- years$map(
   ee_utils_pyfunc(function(year) {
@@ -194,4 +194,5 @@ Map$addLayer(
 # ---------------------------------------------------------------------------
 # End of Script
 # ---------------------------------------------------------------------------
+
 
