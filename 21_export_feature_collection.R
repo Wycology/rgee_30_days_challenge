@@ -3,23 +3,23 @@
 #
 # Purpose:
 #   Demonstrate how to load national boundaries from the
-#   U.S. Department of State (LSIB 2017) dataset in Google Earth Engine
-#   via the rgee, visualize the boundary of Kenya,
+#   GAUL dataset in Google Earth Engine
+#   via the rgee, visualize the boundary of your roi,
 #   and export the boundary shapefile to Google Drive.
 #
 #   Demonstrated steps:
 #     - Initialize Google Earth Engine in R (rgee)
-#     - Load international simplified boundaries (LSIB 2017)
-#     - Filter the dataset to Kenya only
-#     - Visualize the country boundary interactively
-#     - Export the FeatureCollection to Google Drive as a shapefile
+#     - Load GAUL dataset
+#     - Filter the dataset to roi only
+#     - Visualize the roi boundary interactively
+#     - Export the FeatureCollection to Google Drive as a GEOJSON
 #
 # Workflow:
-#   1. Initialize rgee and authenticate GEE
-#   2. Load LSIB global boundary dataset (2017)
-#   3. Filter boundaries to Kenya
+#   1. Initialize rgee 
+#   2. Load GAUL dataset
+#   3. Filter boundaries to roi
 #   4. Visualize boundary on the GEE Map viewer
-#   5. Export shapefile to Google Drive
+#   5. Export GEOJSON to Google Drive
 #
 # Author: Wyclife Agumba Oluoch
 # YouTube: https://www.youtube.com/@wycology
@@ -30,39 +30,35 @@
 # Load required libraries and initialize Earth Engine
 # ------------------------------------------------------------------
 library(rgee)       # Version 1.1.8.9000 R interface for Google Earth Engine
-ee_Initialize()     # Authenticate and start an Earth Engine session
+ee_Initialize()     # Initialize an Earth Engine session
 
 # ------------------------------------------------------------------
-# 1. Load and Filter Boundary Dataset (LSIB Simple 2017)
+# 1. Load and Filter Boundary Dataset (GAUL)
 # ------------------------------------------------------------------
-# Load U.S. Department of State – International Boundaries (simplified)
-fc <- ee$FeatureCollection("USDOS/LSIB_SIMPLE/2017") %>%
-  ee$FeatureCollection$filter(ee$Filter$eq("country_na", "Kenya")) # Keep Kenya only
+world <- ee$FeatureCollection$Dataset$FAO_GAUL_2015_level2
+roi <- world$filter(ee$Filter$eq("ADM2_NAME", "Kericho"))
 
-# Convert FeatureCollection to sf for local inspection (optional)
-ken_sf <- ee_as_sf(fc) # This ken_sf you can write directly to directory
-plot(sf::st_geometry(ken_sf))
+# Convert FeatureCollection to sf for direct use in R
+roi_sf <- ee_as_sf(roi)
+plot(sf::st_geometry(roi_sf))
 # ------------------------------------------------------------------
-# 2. Visualize Kenya Boundary
+# 2. Visualize roi boundary
 # ------------------------------------------------------------------
-Map$centerObject(eeObject = fc$geometry(), zoom = 6)
-Map$addLayer(
-  eeObject = fc$style(color = "magenta", fillColor = "#ffffff00", width = 4),
-  name     = "Kenya Boundary"
+Map$centerObject(eeObject = roi, zoom = 9)
+Map$addLayer(roi$style(color = "magenta", fillColor = "#ffffff00", width = 4))
+
+# ------------------------------------------------------------------
+# 3. Export roi boundary to Google Drive
+# ------------------------------------------------------------------
+task_roi <- ee_table_to_drive(
+  collection = roi,
+  description = 'kericho_district',
+  folder = "kericho_folder",
+  fileFormat = "GEOJSON"
 )
 
-# ------------------------------------------------------------------
-# 3. Export Kenya Boundary to Google Drive
-# ------------------------------------------------------------------
-task_drive <- ee_table_to_drive(
-  collection   = fc,
-  description  = "kenya",
-  folder       = "GEE_Exports",   # Optional Drive destination folder
-  fileFormat   = "SHP"            # Supported: SHP, CSV, KML, GEOJSON
-)
-
-task_drive$start()       # Begin export task
-ee_monitoring(task_drive) # Track export progress
+task_roi$start()       # Begin export task
+ee_monitoring(task_roi) # Track export progress
 
 # ------------------------------------------------------------------
 # Citation:
