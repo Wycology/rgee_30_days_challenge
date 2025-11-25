@@ -1,4 +1,4 @@
-# Setting up rgee for Windows users
+# Setting up `rgee` for Windows users
 
 In this repository, I share the November 2025 30-day rgee challenge scripts. You can watch the accompanying videos at https://www.youtube.com/@wycology
 
