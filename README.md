@@ -49,4 +49,5 @@ Finally, run:
 Congratulations! Peace at last.
 Please follow the steps carefully, and close RStudio and open it again whenever instructed.
 
-## END
+## END![30_day_free](https://github.com/user-attachments/assets/df8b000e-bcd4-4530-9a69-1a5c59d38770)
+
