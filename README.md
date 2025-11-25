@@ -1,24 +1,24 @@
 # Setting up `rgee` for Windows users
 
-In this repository, I share the November 2025 30-day rgee challenge scripts. You can watch the accompanying videos at https://www.youtube.com/@wycology
+In this repository, I share the November 2025 30-day `rgee` challenge scripts. You can watch the accompanying videos at my [YouTube](https://www.youtube.com/@wycology) channel, connect with me via [LinkedIn](https://www.linkedin.com/in/wyclife-oluoch-3924341b9/) or visit my [Website](https://sites.google.com/view/agumbaoluoch/) for other projects I am passionate about.
 
-To get set up with rgee, for Windows users, I swear it is not trivial like other packages like dplyr:
+To get set up with `rgee`, for Windows users, I swear it is not trivial like other packages like `dplyr`:
 
 # Google Earth Engine Account ----------------------------
 
-First, you should have a Google Earth Engine Account. If you don't already, log in to the https://code.earthengine.google.com/ and register for one.
+First, you should have a Google Earth Engine Account. If you don't already, log in [here](https://code.earthengine.google.com/) and register for one; free for academia and research.
 It might take a day or two to be active.
 
 
 # Installing miniconda -----------------------------------
 
-rgee relies on Python in R through reticulate to interact with Google Earth Engine. So, we would like to have this well set.
-We will need to create a conda environment where the GEE Python API will be located and rgee can get it.
+`rgee` relies on Python in R through `reticulate` to interact with Google Earth Engine. So, we would like to have this well set.
+We will need to create a conda environment where the GEE Python API will be located and `rgee` can get it.
 
 Follow these steps:
-1. Install the miniconda3 program (https://docs.conda.io/en/latest/miniconda.html) outside R. You CANNOT say install.packages("miniconda")! Go to your browser and search for the miniconda and install it.
+1. To install the miniconda3 program outside R, click [here](https://docs.conda.io/en/latest/miniconda.html). You CANNOT use _install.packages("miniconda")_! Go to your browser and search for the miniconda and install it.
 2. On the top right, click Download, then scroll down to Miniconda Installers and pick one for Windows with Python version indicated, and click the 64-Bit Graphical Installer and download, then install.
-3. Now, after installing miniconda, hit the Windows button and type Anaconda. You should see Anaconda Prompt. Click it. A scary black and white interface pops up, in it type the following one after the other:
+3. Now, after installing miniconda, hit the Windows button and type Anaconda. You should see Anaconda Prompt. Click it. A "scary" black and white interface pops up, the command prompt, in it type the following one after the other:
 
        a. conda create -n rgee python # This creates a conda environment called rgee with the latest Python version. Click Yes whenever prompted until the environment is set and Python installed.
        b. conda activate rgee # This activates the new rgee environment
@@ -26,8 +26,9 @@ Follow these steps:
        d. pip install earthengine-api # This installs the earthengine-api
        e. pip install numpy # Finally, you get numpy installed. Once done, congratulations!
 
-6. Now, your conda environment is very ready to enable rgee to communicate with Google Earth Engine. Now type the following to get the path to the environment:
-   conda env list # You should be able to see the created rgee environment on the left and its path to it on the right, like `C:/...../rgee/`, copy that path accurately. You will need it in RStudio.
+6. Now, your conda environment is very ready to enable `rgee` to communicate with Google Earth Engine. Now type the following to get the path to the environment:
+
+          conda env list # You should be able to see the created rgee environment on the left and its path to it on the right, like `C:/...../rgee/`, copy that path accurately. You will need it in RStudio.
 
 # Inside RStudio --------------------------------------------
 
