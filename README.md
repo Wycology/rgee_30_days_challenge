@@ -4,13 +4,13 @@ In this repository, I share the November 2025 30-day rgee challenge scripts. You
 
 To get set up with rgee, for Windows users, I swear it is not trivial like other packages like dplyr:
 
-# Google Earth Engine Account -----------------------------------------
+# Google Earth Engine Account ----------------------------
 
 First, you should have a Google Earth Engine Account. If you don't already, log in to the https://code.earthengine.google.com/ and register for one.
 It might take a day or two to be active.
 
 
-# Installing miniconda -------------------------------------------------
+# Installing miniconda -----------------------------------
 
 rgee relies on Python in R through reticulate to interact with Google Earth Engine. So, we would like to have this well set.
 We will need to create a conda environment where the GEE Python API will be located and rgee can get it.
@@ -27,7 +27,7 @@ Follow these steps:
 4. Now, your conda environment is very ready to enable rgee to communicate with Google Earth Engine. Now type the following to get the path to the environment:
    conda env list # You should be able to see the created rgee environment on the left and its path to it on the right, like C:/...../rgee/, copy that path accurately. You will need it in RStudio.
 
-# Inside RStudio -------------------------------------------------------------
+# Inside RStudio --------------------------------------------
 
 1. Check the version of your R; it should be above 3.6. When writing this, the latest version was 4.5.2
 2. Have the latest version of RStudio, or even Positron.
@@ -41,7 +41,7 @@ Follow these steps:
    d. Sys.setenv(RETICULATE_PYTHON = rgee_env_dir)
    e. Sys.setenv(EARTHENGINE_PYTHON = rgee_env_dir)
 
-# Initialize -------------------------------------------------------------------
+# Initialize ------------------------------------------------
 
 Finally, run:
   rgee::ee_Initialize(drive = TRUE) # This will direct you to allow rgee to use your GEE credentials, which you should accept...continue, continue, copy TOKEN if prompted and paste in RStudio accordingly.
