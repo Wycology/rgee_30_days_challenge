@@ -20,7 +20,7 @@ Follow these steps:
 2. On the top right, click Download, then scroll down to Miniconda Installers and pick one for Windows with Python version indicated, and click the 64-Bit Graphical Installer and download, then install.
 3. Now, after installing miniconda, hit the Windows button and type Anaconda. You should see Anaconda Prompt. Click it. A "scary" black and white interface pops up, the command prompt, in it type the following one after the other:
 
-       a. conda create -n rgee python # This creates a conda environment called rgee with the latest Python version. Click Yes whenever prompted until the environment is set and Python installed.
+       a. conda create -n rgee python=3.12 # This creates a conda environment called rgee with Python version 3.12 (I noticed 3.13 has failed for ee_as_rast(), that is, getting raster from GEE directly to R via the drive). Click Yes whenever prompted until the environment is set and Python installed.
        b. conda activate rgee # This activates the new rgee environment
        c. pip install google-api-python-client # This installs the API that enables communication between GEE and Python.
        d. pip install earthengine-api # This installs the earthengine-api
